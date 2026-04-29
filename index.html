@@ -3,63 +3,100 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Découvrez mes créations artisanales Pixbrique.">
-  <title>Ma Boutique | Pixbrique</title>
+  <title>Pixbrique | Boutique Officielle</title>
   
   <style>
     /* --- STYLE GLOBAL --- */
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: #111;
+      background: #0a0a0a; /* Noir encore plus profond */
       color: white;
       text-align: center;
       margin: 0;
     }
 
-    /* --- NAVIGATION --- */
+    /* --- NAVIGATION (MODIFIÉE EN BLEU) --- */
     .navbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 15px 5%;
-      background: #1a1a1a;
-      border-bottom: 2px solid #00ff88;
+      padding: 10px 5%;
+      background: #161616;
+      border-bottom: 2px solid #007bff; /* CHANGÉ EN BLEU */
       position: sticky;
       top: 0;
       z-index: 1000;
     }
 
-    .nav-logo { font-size: 1.5em; font-weight: bold; color: #00ff88; text-decoration: none; }
-    .nav-links a { color: white; text-decoration: none; margin-left: 20px; font-weight: bold; cursor: pointer; }
-    .nav-links a:hover { color: #00ff88; }
+    .nav-logo-img {
+      height: 50px; /* Taille de ton logo */
+      vertical-align: middle;
+    }
+
+    .nav-links a { 
+      color: white; 
+      text-decoration: none; 
+      margin-left: 20px; 
+      font-weight: bold; 
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover { 
+      color: #007bff; /* CHANGÉ EN BLEU */
+    }
 
     /* --- GESTION DES PAGES --- */
     .page {
-      display: none; /* CACHE TOUTES LES PAGES PAR DÉFAUT */
+      display: none;
       padding: 50px 20px;
       animation: fadeIn 0.5s;
     }
 
-    .active {
-      display: block !important; /* MONTRE LA PAGE ACTIVE */
-    }
+    .active { display: block !important; }
 
-    @keyframes fadeIn {
-      from { opacity: 0; } to { opacity: 1; }
-    }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
     /* --- STYLE CARTE PRODUIT --- */
     .container { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
-    .card { background: #222; padding: 20px; border-radius: 15px; width: 280px; }
+    
+    .card { 
+      background: #1c1c1c; 
+      padding: 20px; 
+      border-radius: 15px; 
+      width: 280px;
+      border: 1px solid #333;
+    }
+
     .card img { width: 100%; border-radius: 10px; transition: 0.3s; cursor: zoom-in; }
     .card img:hover { transform: scale(1.05); }
-    .buy-button { display: inline-block; background: #00ff88; color: #111; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold; margin-top: 10px; }
+
+    /* --- BOUTON ACHETER BLEU --- */
+    .buy-button { 
+      display: inline-block; 
+      background: #007bff; /* CHANGÉ EN BLEU */
+      color: white; 
+      padding: 12px 25px; 
+      text-decoration: none; 
+      border-radius: 8px; 
+      font-weight: bold; 
+      margin-top: 15px;
+      transition: 0.3s;
+      border: none;
+    }
+
+    .buy-button:hover { 
+      background: #0056b3; /* BLEU PLUS FONCÉ AU SURVOL */
+      transform: scale(1.05);
+    }
   </style>
 </head>
 <body>
 
   <nav class="navbar">
-    <a href="#" class="nav-logo" onclick="showPage('accueil')">PIXBRIQUE</a>
+    <a href="#" onclick="showPage('accueil')" style="text-decoration: none;">
+      <img src="https://i.ibb.co/23vcHjCf/Sans-slogan-v2.png" alt="Logo Pixbrique" class="nav-logo-img">
+    </a>
     <div class="nav-links">
       <a onclick="showPage('accueil')">Accueil</a>
       <a onclick="showPage('boutique')">Boutique</a>
@@ -69,8 +106,8 @@
 
   <div id="accueil" class="page active">
     <h1>Bienvenue chez Pixbrique</h1>
-    <p>Découvrez nos tableaux uniques faits à la main.</p>
-    <button class="buy-button" onclick="showPage('boutique')" style="cursor:pointer">Voir la boutique</button>
+    <p>L'art de la brique à portée de main.</p>
+    <button class="buy-button" onclick="showPage('boutique')" style="cursor:pointer">Découvrir la collection</button>
   </div>
 
   <div id="boutique" class="page">
@@ -81,7 +118,7 @@
           <img src="https://i.ibb.co/v4Br5GHN/tableau-lion.png" alt="Lion">
         </a>
         <h3>Tableau Lion</h3>
-        <p>150,00 €</p>
+        <p style="font-size: 1.2em; font-weight: bold;">150,00 €</p>
         <a href="https://buy.stripe.com/8x214h3IpdEg3gGdEA2wU00" class="buy-button">Acheter maintenant</a>
       </div>
     </div>
@@ -89,21 +126,17 @@
 
   <div id="contact" class="page">
     <h1>Contact</h1>
-    <p>Email : contact@pixbrique.com</p>
+    <p>Une question ? Contactez-nous :</p>
+    <p style="color: #007bff; font-weight: bold; font-size: 1.2em;">contact@pixbrique.com</p>
   </div>
 
   <script>
     function showPage(pageId) {
-      // 1. On cache toutes les pages
       var pages = document.querySelectorAll('.page');
       pages.forEach(function(p) {
         p.classList.remove('active');
       });
-
-      // 2. On affiche la page demandée
       document.getElementById(pageId).classList.add('active');
-      
-      // 3. On remonte en haut de page
       window.scrollTo(0, 0);
     }
   </script>
