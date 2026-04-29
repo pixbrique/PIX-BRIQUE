@@ -3,179 +3,110 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Découvrez mes créations artisanales Pixbrique. Tableaux uniques faits main.">
+  <meta name="description" content="Découvrez mes créations artisanales Pixbrique.">
   <title>Ma Boutique | Pixbrique</title>
   
   <style>
-    /* --- CSS GLOBAL --- */
+    /* --- STYLE GLOBAL --- */
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Segoe UI', sans-serif;
       background: #111;
       color: white;
       text-align: center;
-      padding: 0;
       margin: 0;
-      scroll-behavior: smooth; /* Permet un défilement doux quand on clique sur les onglets */
     }
 
-    /* --- BARRE DE NAVIGATION (ONGLETS) --- */
+    /* --- NAVIGATION --- */
     .navbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 15px 5%;
       background: #1a1a1a;
+      border-bottom: 2px solid #00ff88;
       position: sticky;
       top: 0;
       z-index: 1000;
-      border-bottom: 2px solid #00ff88;
     }
 
-    .nav-logo {
-      font-size: 1.5em;
-      font-weight: bold;
-      color: #00ff88;
-      text-decoration: none;
-    }
+    .nav-logo { font-size: 1.5em; font-weight: bold; color: #00ff88; text-decoration: none; }
+    .nav-links a { color: white; text-decoration: none; margin-left: 20px; font-weight: bold; cursor: pointer; }
+    .nav-links a:hover { color: #00ff88; }
 
-    .nav-links a {
-      color: white;
-      text-decoration: none;
-      margin-left: 20px;
-      font-weight: bold;
-      transition: 0.3s;
-      font-size: 0.9em;
-      text-transform: uppercase;
-    }
-
-    .nav-links a:hover {
-      color: #00ff88;
-    }
-
-    /* --- CONTENEURS --- */
-    .container {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
+    /* --- GESTION DES PAGES --- */
+    .page {
+      display: none; /* CACHE TOUTES LES PAGES PAR DÉFAUT */
       padding: 50px 20px;
-      flex-wrap: wrap;
+      animation: fadeIn 0.5s;
     }
 
-    h1 {
-      margin-top: 40px;
-      font-size: 2.5em;
+    .active {
+      display: block !important; /* MONTRE LA PAGE ACTIVE */
     }
 
-    /* --- CARTE PRODUIT --- */
-    .card {
-      background: #222;
-      padding: 20px;
-      border-radius: 15px;
-      width: 280px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-      transition: 0.3s;
+    @keyframes fadeIn {
+      from { opacity: 0; } to { opacity: 1; }
     }
 
-    .card:hover {
-      transform: translateY(-5px);
-    }
-
-    /* Style de l'image avec zoom */
-    .card img {
-      width: 100%;
-      border-radius: 10px;
-      height: auto;
-      display: block;
-      margin-bottom: 15px;
-      transition: 0.4s;
-    }
-
-    .card img:hover {
-      cursor: zoom-in;
-      opacity: 0.8;
-      transform: scale(1.05);
-    }
-
-    /* --- BOUTON ACHETER --- */
-    .buy-button {
-      display: inline-block;
-      background: #00ff88;
-      color: #111;
-      padding: 12px 25px;
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: bold;
-      transition: 0.3s;
-      margin-top: 10px;
-    }
-
-    .buy-button:hover {
-      background: #00cc6e;
-      transform: scale(1.05);
-      box-shadow: 0 5px 15px rgba(0, 255, 136, 0.4);
-    }
-
-    .secure-text {
-      font-size: 0.8em;
-      color: #888;
-      margin-top: 15px;
-    }
-
-    /* --- SECTION CONTACT --- */
-    .contact-section {
-      padding: 80px 20px;
-      background: #1a1a1a;
-      margin-top: 50px;
-    }
-
-    .contact-section p {
-      color: #ccc;
-      max-width: 600px;
-      margin: 0 auto;
-    }
+    /* --- STYLE CARTE PRODUIT --- */
+    .container { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+    .card { background: #222; padding: 20px; border-radius: 15px; width: 280px; }
+    .card img { width: 100%; border-radius: 10px; transition: 0.3s; cursor: zoom-in; }
+    .card img:hover { transform: scale(1.05); }
+    .buy-button { display: inline-block; background: #00ff88; color: #111; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold; margin-top: 10px; }
   </style>
 </head>
 <body>
 
   <nav class="navbar">
-    <a href="#" class="nav-logo">PIXBRIQUE</a>
+    <a href="#" class="nav-logo" onclick="showPage('accueil')">PIXBRIQUE</a>
     <div class="nav-links">
-      <a href="#">Accueil</a>
-      <a href="#boutique">Boutique</a>
-      <a href="#contact">Contact</a>
+      <a onclick="showPage('accueil')">Accueil</a>
+      <a onclick="showPage('boutique')">Boutique</a>
+      <a onclick="showPage('contact')">Contact</a>
     </div>
   </nav>
 
-  <header>
-    <h1>Mes créations</h1>
-    <p>Des tableaux uniques, assemblés brique par brique.</p>
-  </header>
-
-  <div class="container" id="boutique">
-    
-    <div class="card">
-      <a href="https://i.ibb.co/v4Br5GHN/tableau-lion.png" target="_blank" title="Cliquez pour agrandir">
-        <img src="https://i.ibb.co/v4Br5GHN/tableau-lion.png" alt="Tableau lion pixbrique">
-      </a>
-      
-      <h3>Tableau Lion</h3>
-      <p style="font-size: 1.2em; color: #00ff88; font-weight: bold;">150,00 €</p>
-
-      <p class="secure-text">💳 Paiement sécurisé par Stripe</p>
-      <a href="https://buy.stripe.com/8x214h3IpdEg3gGdEA2wU00" class="buy-button">Acheter maintenant</a>
-    </div>
-
-    </div>
-
-  <div class="contact-section" id="contact">
-    <h2>Contact</h2>
-    <p>Une question sur une création ou une commande personnalisée ?</p>
-    <p style="margin-top: 20px; color: #00ff88; font-weight: bold;">📧 contact@votre-email.com</p>
+  <div id="accueil" class="page active">
+    <h1>Bienvenue chez Pixbrique</h1>
+    <p>Découvrez nos tableaux uniques faits à la main.</p>
+    <button class="buy-button" onclick="showPage('boutique')" style="cursor:pointer">Voir la boutique</button>
   </div>
 
-  <footer style="padding: 40px; font-size: 0.8em; color: #555;">
-    &copy; 2024 Pixbrique - Tous droits réservés.
-  </footer>
+  <div id="boutique" class="page">
+    <h1>Boutique</h1>
+    <div class="container">
+      <div class="card">
+        <a href="https://i.ibb.co/v4Br5GHN/tableau-lion.png" target="_blank">
+          <img src="https://i.ibb.co/v4Br5GHN/tableau-lion.png" alt="Lion">
+        </a>
+        <h3>Tableau Lion</h3>
+        <p>150,00 €</p>
+        <a href="https://buy.stripe.com/8x214h3IpdEg3gGdEA2wU00" class="buy-button">Acheter maintenant</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="contact" class="page">
+    <h1>Contact</h1>
+    <p>Email : contact@pixbrique.com</p>
+  </div>
+
+  <script>
+    function showPage(pageId) {
+      // 1. On cache toutes les pages
+      var pages = document.querySelectorAll('.page');
+      pages.forEach(function(p) {
+        p.classList.remove('active');
+      });
+
+      // 2. On affiche la page demandée
+      document.getElementById(pageId).classList.add('active');
+      
+      // 3. On remonte en haut de page
+      window.scrollTo(0, 0);
+    }
+  </script>
 
 </body>
 </html>
