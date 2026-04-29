@@ -3,84 +3,60 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pixbrique | Art & Briques Premium</title>
-  
+  <title>Pixbrique | Devenez l'Artiste</title>
   <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #050505;
-      color: #e0e0e0;
-      text-align: center;
-      margin: 0;
-    }
+    body { font-family: 'Segoe UI', sans-serif; background: #050505; color: #e0e0e0; text-align: center; margin: 0; overflow-x: hidden; display: flex; flex-direction: column; min-height: 100vh; }
+    
+    /* --- NAVBAR --- */
+    .navbar { display: flex; justify-content: space-between; align-items: center; padding: 10px 3%; background: #0a0a0a; border-bottom: 2px solid #D4AF37; position: sticky; top: 0; z-index: 1000; }
+    .nav-logo-img { height: 300px; width: auto; cursor: pointer; }
+    .nav-links a { color: #D4AF37; text-decoration: none; margin-left: 30px; font-weight: bold; cursor: pointer; text-transform: uppercase; transition: 0.3s; }
+    .nav-links a:hover { color: #fff; }
 
-   /* --- LA NAVBAR (BANDEAU ENCORE PLUS GRAND) --- */
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 40px 5%; /* On augmente l'espace en haut et en bas */
-      background: #0a0a0a;
-      border-bottom: 4px solid #f1c40f; 
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-
-    /* TAILLE DU LOGO AGRANDIE */
-    .nav-logo-img {
-      height: 300px; /* Passage de 90px à 150px pour un logo imposant */
-      width: auto;
-      transition: 0.3s;
-    }
-
-    .nav-links a { 
-      color: white; 
-      text-decoration: none; 
-      margin-left: 30px; 
-      font-weight: bold; 
-      cursor: pointer;
-      text-transform: uppercase;
-      transition: 0.3s;
-    }
-
-    .nav-links a:hover { color: #f1c40f; }
-
-    /* --- PAGES --- */
-    .page { display: none; padding: 100px 20px; animation: fadeIn 0.8s; }
+    /* --- GESTION DES PAGES --- */
+    .content-wrapper { flex: 1; }
+    .page { display: none; padding: 60px 20px; animation: fadeIn 0.8s; }
     .active { display: block !important; }
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-    /* --- BOUTONS OR --- */
-    .buy-button { 
-      display: inline-block; 
-      background: linear-gradient(135deg, #f1c40f 0%, #f39c12 100%);
-      color: #111; 
-      padding: 15px 35px; 
-      text-decoration: none; 
-      border-radius: 10px; 
-      font-weight: bold; 
-      cursor: pointer;
-      border: none;
-      transition: 0.3s;
-    }
+    /* --- ACCUEIL --- */
+    #accueil { padding: 100px 20px; }
+    .hero-title { color: #D4AF37; font-size: 3.5em; margin-bottom: 20px; }
+    .hero-text { font-size: 1.2em; max-width: 700px; margin: 0 auto 30px; line-height: 1.6; }
+    .cta-button { background: #D4AF37; color: #000; padding: 15px 30px; border-radius: 30px; font-weight: bold; text-decoration: none; display: inline-block; transition: 0.3s; cursor: pointer; border: none; font-size: 1em; }
 
-    .buy-button:hover { 
-      transform: scale(1.05);
-      box-shadow: 0 0 20px rgba(241, 196, 15, 0.4);
-    }
+    /* --- FILTRES BOUTIQUE --- */
+    .filter-menu { margin: 30px 0; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+    .filter-btn { background: transparent; border: 1px solid #D4AF37; color: #D4AF37; padding: 8px 18px; border-radius: 20px; cursor: pointer; font-weight: bold; transition: 0.3s; font-size: 0.8em; }
+    .filter-btn.active-filter { background: #D4AF37; color: #000; }
 
-    .container { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; }
-    .card { background: #111; padding: 20px; border-radius: 20px; width: 300px; border: 1px solid #222; }
-    .card img { width: 100%; border-radius: 15px; cursor: zoom-in; }
+    /* --- GRILLE DE LA GALERIE --- */
+    .container { display: flex; justify-content: center; gap: 12px; padding: 0 10px; max-width: 1400px; margin: 0 auto; flex-wrap: wrap; }
+    .card { background: #111; padding: 10px; border-radius: 15px; width: 15%; min-width: 180px; border: 1px solid #222; cursor: pointer; transition: 0.3s; margin-bottom: 20px; }
+    .card:hover { border-color: #D4AF37; transform: translateY(-5px); }
+    .card img { width: 100%; border-radius: 10px; display: block; }
+    .card-title { display: block; color: #D4AF37; font-size: 0.75em; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; font-weight: bold; }
+
+    /* --- DETAILS PRODUITS --- */
+    .shop-details { display: none; margin-top: 15px; animation: fadeIn 0.5s forwards; }
+    .price { color: #D4AF37; font-weight: bold; margin-bottom: 10px; }
+    .buy-button { background: #D4AF37; color: #000; padding: 8px 15px; text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 0.8em; border: none; cursor: pointer; }
+
+    /* --- FOOTER & TIKTOK --- */
+    footer { padding: 40px 20px; background: #0a0a0a; border-top: 1px solid #222; margin-top: auto; }
+    .social-icon { fill: #D4AF37; transition: 0.3s; }
+    .social-icon:hover { fill: #fff; transform: scale(1.1); }
+    .footer-text { color: #444; font-size: 0.8em; margin-top: 15px; }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 1100px) { .card { width: 30%; } }
+    @media (max-width: 600px) { .card { width: 45%; } .navbar { flex-direction: column; gap: 15px; } }
   </style>
 </head>
 <body>
 
   <nav class="navbar">
-    <a href="#" onclick="showPage('accueil')">
-      <img src="https://i.ibb.co/VYfcybys/Sans-slogan-v2-removebg-preview.png" alt="Logo Pixbrique" class="nav-logo-img">
-    </a>
+    <img src="https://i.ibb.co/VYfcybys/Sans-slogan-v2-removebg-preview.png" class="nav-logo-img" onclick="showPage('accueil')">
     <div class="nav-links">
       <a onclick="showPage('accueil')">Accueil</a>
       <a onclick="showPage('boutique')">Boutique</a>
@@ -88,40 +64,113 @@
     </div>
   </nav>
 
-  <div id="accueil" class="page active">
-    <h1 style="color:#f1c40f; font-size: 3em;">Pixbrique : L'Art de la Brique</h1>
-    <p>Découvrez des créations uniques et numérotées, assemblées à la main.</p>
-    <br>
-    <button class="buy-button" onclick="showPage('boutique')">Visiter la Galerie</button>
-  </div>
+  <div class="content-wrapper">
+    <div id="accueil" class="page active">
+      <h1 class="hero-title">Devenez l'Artiste</h1>
+      <p class="hero-text">Découvrez une nouvelle manière de créer. Nos kits de tableaux en briques vous permettent d'assembler des œuvres d'art uniques.</p>
+      <button class="cta-button" onclick="showPage('boutique')">Découvrir la Galerie</button>
+    </div>
 
-  <div id="boutique" class="page">
-    <h1 style="color:#f1c40f;">La Galerie</h1>
-    <div class="container">
-      <div class="card">
-        <a href="https://i.ibb.co/v4Br5GHN/tableau-lion.png" target="_blank">
-          <img src="https://i.ibb.co/v4Br5GHN/tableau-lion.png" alt="Lion">
-        </a>
-        <h3 style="color:white;">Tableau Lion</h3>
-        <p style="color:#f1c40f; font-size: 1.5em; font-weight: bold;">150,00 €</p>
-        <a href="https://buy.stripe.com/8x214h3IpdEg3gGdEA2wU00" class="buy-button">Acquérir cette pièce</a>
+    <div id="boutique" class="page">
+      <h1 id="main-title" style="color:#D4AF37;">La Galerie des Kits</h1>
+      <div class="filter-menu">
+        <button id="btn-all" class="filter-btn active-filter" onclick="filterGallery('all', this)">Tous</button>
+        <button id="btn-animaux" class="filter-btn" onclick="filterGallery('animaux', this)">Les Animaux</button>
+        <button id="btn-fleurs" class="filter-btn" onclick="filterGallery('fleurs', this)">Les Fleurs</button>
+        <button id="btn-art" class="filter-btn" onclick="filterGallery('art', this)">Art Moderne</button>
+        <button id="btn-enfant" class="filter-btn" onclick="filterGallery('enfant', this)">Enfant</button>
+      </div>
+
+      <div class="container">
+        <div class="card animaux" onclick="triggerFilter('animaux')">
+          <span class="card-title">Les Animaux</span>
+          <img src="https://i.ibb.co/JFWzP8Xt/LION-1.png">
+          <div class="shop-details"><p class="price">150,00 €</p><button class="buy-button">Commander</button></div>
+        </div>
+        <div class="card fleurs" onclick="triggerFilter('fleurs')">
+          <span class="card-title">Les Fleurs</span>
+          <img src="https://i.ibb.co/LT2NTJY/ARBRE-1.png">
+          <div class="shop-details"><p class="price">100,00 €</p><button class="buy-button">Bientôt</button></div>
+        </div>
+        <div class="card fleurs exclusive" onclick="triggerFilter('fleurs')">
+          <span class="card-title">Les Fleurs</span>
+          <img src="https://i.ibb.co/nMCW5kwK/FLEUR-2.png">
+          <div class="shop-details"><p class="price">30,00 €</p><button class="buy-button">Bientôt</button></div>
+        </div>
+        <div class="card fleurs exclusive" onclick="triggerFilter('fleurs')">
+          <span class="card-title">Les Fleurs</span>
+          <img src="https://i.ibb.co/CsJSGrkp/FLEUR-1.png">
+          <div class="shop-details"><p class="price">30,00 €</p><button class="buy-button">Bientôt</button></div>
+        </div>
+        <div class="card art" onclick="triggerFilter('art')">
+          <span class="card-title">Art Moderne</span>
+          <img src="https://i.ibb.co/XZc8MgCW/MODERNE-3.png">
+          <div class="shop-details"><p class="price">60,00 €</p><button class="buy-button">Bientôt</button></div>
+        </div>
+        <div class="card enfant" onclick="triggerFilter('enfant')">
+          <span class="card-title">Enfant</span>
+          <img src="https://i.ibb.co/4gnms5xt/MONSTRE-1.png">
+          <div class="shop-details"><p class="price">60,00 €</p><button class="buy-button">Bientôt</button></div>
+        </div>
       </div>
     </div>
-  </div>
+<div id="contact" class="page">
+      <h1 style="color:#D4AF37; font-size: 2.5em;">Me Contacter</h1>
+      
+      <div style="max-width: 600px; margin: 0 auto; line-height: 1.8;">
+        <p>Une question sur l'un de nos kits ? Une envie particulière pour un tableau sur-mesure ?</p>
+        <p>
+          Je suis à votre écoute pour vous accompagner dans votre projet créatif. 
+          N'hésitez pas à m'envoyer un message directement par e-mail, je vous répondrai avec plaisir dans les plus brefs délais.
+        </p>
+        
+        <div style="margin: 40px 0; padding: 20px; border: 1px dashed #D4AF37; border-radius: 15px;">
+          <p style="margin-bottom: 5px; color: #D4AF37; text-transform: uppercase; font-size: 0.9em; letter-spacing: 1px;">Notre adresse e-mail</p>
+          <a href="mailto:Pix.brique@outlook.fr" style="color:#D4AF37; font-weight:bold; font-size: 1.8em; text-decoration: none;">Pix.brique@outlook.fr</a>
+        </div>
 
-  <div id="contact" class="page">
-    <h1 style="color:#f1c40f;">Contact</h1>
-    <p>Une question ? Un projet sur mesure ?</p>
-    <p style="color:#f1c40f; font-weight: bold;">contact@pixbrique.com</p>
-  </div>
+        </p>
+      </div>
+    </div>
+  <footer>
+    <a href="https://www.tiktok.com/@pixbrique" target="_blank" title="Suivez-nous sur TikTok">
+      <svg class="social-icon" width="40" height="40" viewBox="0 0 24 24">
+        <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 2.81 3.48 2.64 1.06-.05 2.03-.54 2.67-1.39.57-.7.86-1.6.86-2.49-.01-5.05 0-10.11 0-15.16z"/>
+      </svg>
+    </a>
+    <div class="footer-text">&copy; 2026 Pixbrique Atelier. Tous droits réservés.</div>
+  </footer>
 
   <script>
     function showPage(pageId) {
       document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
       document.getElementById(pageId).classList.add('active');
-      window.scrollTo(0, 0);
+      window.scrollTo(0,0);
+      if(pageId === 'boutique') filterGallery('all', document.getElementById('btn-all'));
+    }
+
+    function triggerFilter(cat) { filterGallery(cat, document.getElementById('btn-'+cat)); }
+
+    function filterGallery(category, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active-filter'));
+      if(btn) btn.classList.add('active-filter');
+      const cards = document.querySelectorAll('.card');
+      const mainTitle = document.getElementById('main-title');
+
+      cards.forEach(card => {
+        const titleText = card.querySelector('.card-title');
+        const shopInfo = card.querySelector('.shop-details');
+
+        if (category === 'all') {
+          if (card.classList.contains('exclusive')) { card.style.display = 'none'; } 
+          else { card.style.display = 'block'; titleText.style.display = 'block'; shopInfo.style.display = 'none'; }
+          mainTitle.innerText = "La Galerie des Kits";
+        } else {
+          if (card.classList.contains(category)) { card.style.display = 'block'; titleText.style.display = 'none'; shopInfo.style.display = 'block'; mainTitle.innerText = btn.innerText; } 
+          else { card.style.display = 'none'; }
+        }
+      });
     }
   </script>
-
 </body>
 </html>
