@@ -1,56 +1,86 @@
+C'est une excellente idée ! Passer de l'or au lieu du bleu va donner un côté beaucoup plus haut de gamme, artistique et premium à ta boutique. C'est parfait pour vendre des œuvres d'art à 150 €.
+
+J'ai donc fait deux choses :
+
+Remplacé tout le bleu par un or riche.
+
+Agrandi la barre de navigation (le bandeau) et réglé la taille pour que ton logo soit bien visible.
+
+Voici le code complet à copier-coller sur GitHub :
+HTML
 <!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pixbrique | Boutique Officielle</title>
+  <title>Pixbrique | Art & Briques Premium</title>
   
   <style>
     /* --- STYLE GLOBAL --- */
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #0a0a0a; /* Noir encore plus profond */
-      color: white;
+      font-family: 'Segoe UI', 'Roboto', sans-serif;
+      background: #050505; /* Noir presque pur pour faire ressortir l'or */
+      color: #e0e0e0;
       text-align: center;
       margin: 0;
     }
 
-    /* --- NAVIGATION (MODIFIÉE EN BLEU) --- */
+    h1, h2, h3 {
+      color: #f1c40f; /* Une touche d'or sur les titres */
+    }
+
+    /* --- NAVIGATION (MODIFIÉE : PLUS GRANDE & COULEUR OR) --- */
     .navbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 10px 5%;
-      background: #161616;
-      border-bottom: 2px solid #007bff; /* CHANGÉ EN BLEU */
+      /* J'ai augmenté le padding vertical (de 10px à 25px) pour agrandir le bandeau */
+      padding: 25px 5%; 
+      background: #111;
+      border-bottom: 3px solid #f1c40f; /* BANDEAU OR PLUS ÉPAIS */
       position: sticky;
       top: 0;
       z-index: 1000;
+      box-shadow: 0 4px 15px rgba(241, 196, 15, 0.2); /* Légère lueur or sous le bandeau */
     }
 
     .nav-logo-img {
-      height: 50px; /* Taille de ton logo */
+      /* J'ai aggrandi la taille maximale du logo (de 50px à 80px) */
+      height: 80px; 
+      width: auto; /* Garde les proportions */
       vertical-align: middle;
-    }
-
-    .nav-links a { 
-      color: white; 
-      text-decoration: none; 
-      margin-left: 20px; 
-      font-weight: bold; 
-      cursor: pointer;
       transition: 0.3s;
     }
 
+    .nav-logo-img:hover {
+      transform: scale(1.05); /* Petit effet au survol du logo */
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-links a { 
+      color: #e0e0e0; 
+      text-decoration: none; 
+      margin-left: 30px; /* Plus d'espace entre les onglets */
+      font-weight: bold; 
+      cursor: pointer;
+      transition: 0.3s;
+      text-transform: uppercase; /* Onglets en majuscules pour le style premium */
+      font-size: 1.1em;
+    }
+
     .nav-links a:hover { 
-      color: #007bff; /* CHANGÉ EN BLEU */
+      color: #f1c40f; /* CHANGÉ EN OR AU SURVOL */
     }
 
     /* --- GESTION DES PAGES --- */
     .page {
       display: none;
-      padding: 50px 20px;
-      animation: fadeIn 0.5s;
+      padding: 80px 20px; /* Plus d'espace pour respirer */
+      animation: fadeIn 0.8s;
     }
 
     .active { display: block !important; }
@@ -58,36 +88,64 @@
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
     /* --- STYLE CARTE PRODUIT --- */
-    .container { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+    .container { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-top: 40px; }
     
     .card { 
-      background: #1c1c1c; 
-      padding: 20px; 
-      border-radius: 15px; 
-      width: 280px;
-      border: 1px solid #333;
+      background: #111; 
+      padding: 25px; 
+      border-radius: 20px; 
+      width: 300px;
+      border: 2px solid #222; /* Bordure discrète */
+      transition: 0.3s;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.5);
     }
 
-    .card img { width: 100%; border-radius: 10px; transition: 0.3s; cursor: zoom-in; }
-    .card img:hover { transform: scale(1.05); }
+    .card:hover {
+      border-color: #f1c40f; /* La bordure devient or au survol de la carte */
+      transform: translateY(-5px);
+    }
 
-    /* --- BOUTON ACHETER BLEU --- */
+    .card img { width: 100%; border-radius: 15px; transition: 0.4s; cursor: zoom-in; }
+    .card img:hover { transform: scale(1.03); }
+
+    .card h3 { color: white; margin-top: 20px; }
+
+    /* --- BOUTON ACHETER OR PREMIUM --- */
     .buy-button { 
       display: inline-block; 
-      background: #007bff; /* CHANGÉ EN BLEU */
-      color: white; 
-      padding: 12px 25px; 
+      background: linear-gradient(135deg, #f1c40f 0%, #f39c12 100%); /* Dégradé or pour plus de relief */
+      color: #111; /* Texte foncé sur fond clair */
+      padding: 15px 30px; 
       text-decoration: none; 
-      border-radius: 8px; 
+      border-radius: 10px; 
       font-weight: bold; 
-      margin-top: 15px;
+      margin-top: 20px;
       transition: 0.3s;
       border: none;
+      font-size: 1.1em;
+      cursor: pointer;
     }
 
     .buy-button:hover { 
-      background: #0056b3; /* BLEU PLUS FONCÉ AU SURVOL */
+      background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%); /* Or plus foncé au survol */
       transform: scale(1.05);
+      box-shadow: 0 5px 15px rgba(241, 196, 15, 0.4);
+    }
+
+    /* --- PAGE CONTACT SPÉCIFIQUE --- */
+    #contact p {
+      font-size: 1.2em;
+      line-height: 1.6;
+    }
+    .email-link {
+      color: #f1c40f;
+      font-weight: bold;
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      transition: 0.3s;
+    }
+    .email-link:hover {
+      border-bottom-color: #f1c40f;
     }
   </style>
 </head>
@@ -95,7 +153,7 @@
 
   <nav class="navbar">
     <a href="#" onclick="showPage('accueil')" style="text-decoration: none;">
-      <img src="https://i.ibb.co/VYfcybys/Sans-slogan-v2-removebg-preview.png" alt="Logo Pixbrique" class="nav-logo-img">
+      <img src="https://via.placeholder.com/300x100/111111/f1c40f?text=PIXBRIQUE" alt="Logo Pixbrique" class="nav-logo-img">
     </a>
     <div class="nav-links">
       <a onclick="showPage('accueil')">Accueil</a>
@@ -105,30 +163,40 @@
   </nav>
 
   <div id="accueil" class="page active">
-    <h1>Bienvenue chez Pixbrique</h1>
-    <p>L'art de la brique à portée de main.</p>
-    <button class="buy-button" onclick="showPage('boutique')" style="cursor:pointer">Découvrir la collection</button>
+    <h1>Pixbrique : L'Art de la Brique</h1>
+    <p>Découvrez des créations uniques et numérotées, assemblées à la main avec précision.</p>
+    <button class="buy-button" onclick="showPage('boutique')">Visiter la Galerie</button>
   </div>
 
   <div id="boutique" class="page">
-    <h1>Boutique</h1>
+    <h1>La Galerie</h1>
+    <p>Pièces uniques disponibles à la vente.</p>
     <div class="container">
+      
       <div class="card">
-        <a href="https://i.ibb.co/v4Br5GHN/tableau-lion.png" target="_blank">
-          <img src="https://i.ibb.co/v4Br5GHN/tableau-lion.png" alt="Lion">
+        <a href="https://i.ibb.co/v4Br5GHN/tableau-lion.png" target="_blank" title="Cliquez pour agrandir">
+          <img src="https://i.ibb.co/v4Br5GHN/tableau-lion.png" alt="Tableau Lion Pixbrique">
         </a>
         <h3>Tableau Lion</h3>
-        <p style="font-size: 1.2em; font-weight: bold;">150,00 €</p>
-        <a href="https://buy.stripe.com/8x214h3IpdEg3gGdEA2wU00" class="buy-button">Acheter maintenant</a>
+        <p style="font-size: 1.4em; font-weight: bold; color: #f1c40f;">150,00 €</p>
+        <p style="font-size: 0.8em; color: #888; margin-top: -10px;">Édition Limitée</p>
+        <a href="https://buy.stripe.com/8x214h3IpdEg3gGdEA2wU00" class="buy-button">Acquérir cette pièce</a>
       </div>
+      
     </div>
   </div>
 
   <div id="contact" class="page">
-    <h1>Contact</h1>
-    <p>Une question ? Contactez-nous :</p>
-    <p style="color: #007bff; font-weight: bold; font-size: 1.2em;">contact@pixbrique.com</p>
+    <h1>Contact Professionnel</h1>
+    <p>Pour toute question, demande de création personnalisée ou suivi de commande, notre atelier est à votre écoute.</p>
+    <p style="margin-top: 30px;">
+      <a href="mailto:contact@pixbrique.com" class="email-link">contact@pixbrique.com</a>
+    </p>
   </div>
+
+  <footer style="padding: 50px; color: #444; font-size: 0.9em; background: #080808; margin-top: 80px;">
+    &copy; 2024 Pixbrique Atelier. Tous droits réservés.
+  </footer>
 
   <script>
     function showPage(pageId) {
