@@ -677,8 +677,7 @@
       }
     }
     
-    /* --- FONCTIONS DU POP-UP CORRIGÉES --- */
-    let produitActuel = ""; // Variable pour stocker le nom du produit sélectionné
+  let produitActuel = ""; // Variable pour stocker le nom du produit sélectionné
 
     function ouvrirPopup(nomProduit) {
       produitActuel = nomProduit; // On enregistre le produit
@@ -697,8 +696,8 @@
       const emailSujet = encodeURIComponent("Nouvelle commande Pixbrique - " + produitActuel);
       const emailCorps = encodeURIComponent("Bonjour,\n\nJe souhaite passer commande pour le kit : " + produitActuel + ".\nMerci de me tenir informé de la disponibilité et des délais.\n\nCordialement.");
       
-      // Ouverture forcée du client mail
-      window.open("mailto:Pix.brique@outlook.fr?subject=" + emailSujet + "&body=" + emailCorps, '_blank');
+      // CORRECTION : On utilise window.location.href pour éviter la page noire
+      window.location.href = "mailto:Pix.brique@outlook.fr?subject=" + emailSujet + "&body=" + emailCorps;
       
       fermerPopup(); // Ferme le popup après l'action
     });
@@ -710,10 +709,6 @@
         modal.style.display = "none";
       }
     }
-    
-    window.onload = () => {
-      filterGallery('all', document.getElementById('btn-all'));
-    };
   </script>
 </body>
 </html>
