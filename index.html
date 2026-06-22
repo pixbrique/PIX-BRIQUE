@@ -384,11 +384,11 @@
     .modal-content {
       background: linear-gradient(145deg, #14120f 0%, #0d0d0d 100%);
       border: 2px solid #D4AF37;
-      margin: 15% auto; 
+      margin: 10% auto; 
       padding: 30px;
       border-radius: 15px;
-      width: 80%;
-      max-width: 550px;
+      width: 85%;
+      max-width: 500px;
       text-align: center;
       box-shadow: 0 10px 30px rgba(212,175,55,0.2);
       position: relative;
@@ -407,7 +407,7 @@
       color: #D4AF37;
     }
     .modal-text {
-      font-size: 1.1em;
+      font-size: 1.05em;
       line-height: 1.6;
       color: #e0e0e0;
       margin-bottom: 25px;
@@ -438,7 +438,7 @@
       .card { width: 45%; min-width: 140px; }
       .contact-email-link { font-size: 1.3em; }
       .contact-title { font-size: 2em; }
-      .modal-content { margin: 30% auto; width: 90%; padding: 20px; }
+      .modal-content { margin: 20% auto; width: 90%; padding: 25px; }
     }
     @media (max-width: 480px) {
       .card { width: 100%; }
@@ -618,14 +618,23 @@
     <div class="modal-content">
       <span class="close-modal" onclick="fermerPopup()">&times;</span>
       <h2 style="color: #D4AF37; margin-top: 0;" id="popup-titre-produit">Commande</h2>
-      <p class="modal-text">
+      <p class="modal-text" style="font-size: 0.95em; text-align: left;">
         Merci de l'intérêt porté à mes créations ! Pixbrique étant une toute jeune entreprise, je ne dispose pas encore de stock permanent. 
         <br><br>
-        Suite à votre demande et après retour de mon fournisseur, je vous recontacterai personnellement pour vous confirmer la faisabilité de votre commande ainsi que le délai de livraison.
-        <br><br>
-        Si vous êtes toujours d'accord pour l'acheter, cliquez sur le bouton ci-dessous pour m'envoyer votre demande.
+        Suite à votre demande, je vous recontacterai personnellement pour vous confirmer la faisabilité de votre commande ainsi que le délai de livraison. Si vous êtes toujours d'accord pour l'acheter, laissez-moi vos coordonnées :
       </p>
-      <a href="#" id="lien-mail-commande" class="modal-btn">Confirmer et Commander</a>
+      
+      <form action="https://formspree.io/f/xvzjoaka" method="POST" style="text-align: left; display: flex; flex-direction: column; gap: 15px;">
+        <input type="hidden" name="Produit Demandé" id="form-nom-produit">
+        
+        <label style="color: #D4AF37; font-weight: bold; font-size: 0.9em;">Votre adresse e-mail :</label>
+        <input type="email" name="_replyto" required placeholder="exemple@email.com" style="padding: 12px; border-radius: 5px; border: 1px solid #333; background: #1a1a1a; color: #fff; font-size: 1em;">
+        
+        <label style="color: #D4AF37; font-weight: bold; font-size: 0.9em;">Message ou précision (optionnel) :</label>
+        <textarea name="message" rows="3" placeholder="Ex: Bonjour, je souhaiterais réserver ce kit..." style="padding: 12px; border-radius: 5px; border: 1px solid #333; background: #1a1a1a; color: #fff; font-size: 1em; font-family: sans-serif; resize: none;"></textarea>
+        
+        <button type="submit" class="modal-btn" style="width: 100%; margin-top: 10px;">Envoyer ma demande</button>
+      </form>
     </div>
   </div>
 
@@ -677,30 +686,16 @@
       }
     }
     
-  let produitActuel = ""; // Variable pour stocker le nom du produit sélectionné
-
+    /* --- FONCTIONS DU POP-UP --- */
     function ouvrirPopup(nomProduit) {
-      produitActuel = nomProduit; // On enregistre le produit
-      document.getElementById('popup-titre-produit').innerText = "Commande : " + nomProduit;
+      document.getElementById('popup-titre-produit').innerText = "Demande pour : " + nomProduit;
+      document.getElementById('form-nom-produit').value = nomProduit;
       document.getElementById('popupCommande').style.display = 'block';
     }
 
     function fermerPopup() {
       document.getElementById('popupCommande').style.display = 'none';
     }
-
-    // Cette fonction se déclenche au clic sur le bouton de confirmation du pop-up
-    document.getElementById('lien-mail-commande').addEventListener('click', function(e) {
-      e.preventDefault(); // Empêche le comportement par défaut du lien
-      
-      const emailSujet = encodeURIComponent("Nouvelle commande Pixbrique - " + produitActuel);
-      const emailCorps = encodeURIComponent("Bonjour,\n\nJe souhaite passer commande pour le kit : " + produitActuel + ".\nMerci de me tenir informé de la disponibilité et des délais.\n\nCordialement.");
-      
-      // CORRECTION : On utilise window.location.href pour éviter la page noire
-      window.location.href = "mailto:Pix.brique@outlook.fr?subject=" + emailSujet + "&body=" + emailCorps;
-      
-      fermerPopup(); // Ferme le popup après l'action
-    });
 
     // Ferme le popup si on clique en dehors
     window.onclick = function(event) {
@@ -709,6 +704,10 @@
         modal.style.display = "none";
       }
     }
+    
+    window.onload = () => {
+      filterGallery('all', document.getElementById('btn-all'));
+    };
   </script>
 </body>
 </html>
